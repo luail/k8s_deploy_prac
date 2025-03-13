@@ -14,34 +14,43 @@ spec:
     spec:
       containers:
       - name: ko-order-backend
-        image: 443370682320.dkr.ecr.ap-northeast-2.amazonaws.com/joon-order-backend:latest
+        image: 443370682320.dkr.ecr.ap-northeast-2.amazonaws.com/ordersystem:latest
         ports:
         - containerPort: 8080
+        resources:
+        # 컨테이너가 사용할수 있는 리소스의 최대치
+          limits:
+            cpu: "1"
+            memory: "500Mi"
+        # 컨테이너가 시작될떄 보장받아야 하는 최소 자원
+          requests:
+            cpu: "0.5"
+            memory: "250Mi"
         env:
         - name: DB_HOST
           valueFrom:
             secretKeyRef:
-              name: ko-secrets
+              name: ko-app-secrets
               key: DB_HOST
         - name: DB_PW
           valueFrom:
             secretKeyRef:
-              name: ko-secrets
+              name: ko-app-secrets
               key: DB_PW
         - name: REDIS_HOST
           valueFrom:
             secretKeyRef:
-              name: ko-secrets
+              name: ko-app-secrets
               key: REDIS_HOST
         - name: AWS_KEY
           valueFrom:
             secretKeyRef:
-              name: ko-secrets
+              name: ko-app-secrets
               key: AWS_KEY
         - name: AWS_SECRET
           valueFrom:
             secretKeyRef:
-              name: ko-secrets
+              name: ko-app-secrets
               key: AWS_SECRET
         # 컨테이너 상태 확인 
         readinessProbe:
