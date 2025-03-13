@@ -18,5 +18,5 @@ spec:
     kind: Deployment
     name: ko-order-backend
   minReplicas: 2
-  maxReplicas: 4
+  maxReplicas: 6
   targetCPUUtilizationPercentage: 10

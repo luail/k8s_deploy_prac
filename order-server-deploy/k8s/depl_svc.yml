@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: ko-order-backend
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: ko-order-backend
